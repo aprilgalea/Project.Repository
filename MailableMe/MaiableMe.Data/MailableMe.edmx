@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Entity.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EntityStoreContainer">
+          <EntitySet Name="accounts" EntityType="Entity.Store.accounts" store:Type="Tables" Schema="mailableme" />
+          <EntitySet Name="accountsecurityquestions" EntityType="Entity.Store.accountsecurityquestions" store:Type="Tables" Schema="mailableme" />
+          <EntitySet Name="blogs" EntityType="Entity.Store.blogs" store:Type="Tables" Schema="mailableme" />
+          <EntitySet Name="emails" EntityType="Entity.Store.emails" store:Type="Tables" Schema="mailableme" />
+          <EntitySet Name="securityquestions" EntityType="Entity.Store.securityquestions" store:Type="Tables" Schema="mailableme" />
+          <EntitySet Name="users" EntityType="Entity.Store.users" store:Type="Tables" Schema="mailableme" />
+          <AssociationSet Name="FK_accounts" Association="Entity.Store.FK_accounts">
+            <End Role="emails" EntitySet="emails" />
+            <End Role="accounts" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSecurityQuestions" Association="Entity.Store.FK_AccountSecurityQuestions">
+            <End Role="accounts" EntitySet="accounts" />
+            <End Role="accountsecurityquestions" EntitySet="accountsecurityquestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSecurityQuestions_SecurityQuestionID" Association="Entity.Store.FK_AccountSecurityQuestions_SecurityQuestionID">
+            <End Role="securityquestions" EntitySet="securityquestions" />
+            <End Role="accountsecurityquestions" EntitySet="accountsecurityquestions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="accounts">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="EmailUser" Type="varchar" MaxLength="255" />
+          <Property Name="EmailID" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Gender" Type="char" Nullable="false" MaxLength="10" />
+          <Property Name="BirthDay" Type="date" Nullable="false" />
+          <Property Name="Address" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="accountsecurityquestions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="SecurityQuestionID" Type="int" Nullable="false" />
+          <Property Name="Answer" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="blogs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="BlogContent" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="emails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="EmailPrefix" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="securityquestions">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SecurityQuestion" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="PasswordExpiry" Type="date" Nullable="false" />
+          <Property Name="Active" Type="bool" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_accounts">
+          <End Role="emails" Type="Entity.Store.emails" Multiplicity="1" />
+          <End Role="accounts" Type="Entity.Store.accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accounts">
+              <PropertyRef Name="EmailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSecurityQuestions">
+          <End Role="accounts" Type="Entity.Store.accounts" Multiplicity="1" />
+          <End Role="accountsecurityquestions" Type="Entity.Store.accountsecurityquestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accountsecurityquestions">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSecurityQuestions_SecurityQuestionID">
+          <End Role="securityquestions" Type="Entity.Store.securityquestions" Multiplicity="1" />
+          <End Role="accountsecurityquestions" Type="Entity.Store.accountsecurityquestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="securityquestions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accountsecurityquestions">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Entity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MailableMeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Entity.account" />
+          <EntitySet Name="accountsecurityquestions" EntityType="Entity.accountsecurityquestion" />
+          <EntitySet Name="blogs" EntityType="Entity.blog" />
+          <EntitySet Name="emails" EntityType="Entity.email" />
+          <EntitySet Name="securityquestions" EntityType="Entity.securityquestion" />
+          <EntitySet Name="users" EntityType="Entity.user" />
+          <AssociationSet Name="FK_accounts" Association="Entity.FK_accounts">
+            <End Role="emails" EntitySet="emails" />
+            <End Role="accounts" EntitySet="accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSecurityQuestions" Association="Entity.FK_AccountSecurityQuestions">
+            <End Role="accounts" EntitySet="accounts" />
+            <End Role="accountsecurityquestions" EntitySet="accountsecurityquestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountSecurityQuestions_SecurityQuestionID" Association="Entity.FK_AccountSecurityQuestions_SecurityQuestionID">
+            <End Role="securityquestions" EntitySet="securityquestions" />
+            <End Role="accountsecurityquestions" EntitySet="accountsecurityquestions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" />
+          <Property Name="EmailUser" Type="String" />
+          <Property Name="EmailID" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" />
+          <NavigationProperty Name="email1" Relationship="Entity.FK_accounts" FromRole="accounts" ToRole="emails" />
+          <NavigationProperty Name="accountsecurityquestions" Relationship="Entity.FK_AccountSecurityQuestions" FromRole="accounts" ToRole="accountsecurityquestions" />
+        </EntityType>
+        <EntityType Name="accountsecurityquestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="SecurityQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="Answer" Type="String" Nullable="false" />
+          <NavigationProperty Name="account" Relationship="Entity.FK_AccountSecurityQuestions" FromRole="accountsecurityquestions" ToRole="accounts" />
+          <NavigationProperty Name="securityquestion" Relationship="Entity.FK_AccountSecurityQuestions_SecurityQuestionID" FromRole="accountsecurityquestions" ToRole="securityquestions" />
+        </EntityType>
+        <EntityType Name="blog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="BlogContent" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="email">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="EmailPrefix" Type="String" Nullable="false" />
+          <NavigationProperty Name="accounts" Relationship="Entity.FK_accounts" FromRole="emails" ToRole="accounts" />
+        </EntityType>
+        <EntityType Name="securityquestion">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SecurityQuestion1" Type="String" Nullable="false" />
+          <NavigationProperty Name="accountsecurityquestions" Relationship="Entity.FK_AccountSecurityQuestions_SecurityQuestionID" FromRole="securityquestions" ToRole="accountsecurityquestions" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="PasswordExpiry" Type="DateTime" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_accounts">
+          <End Role="emails" Type="Entity.email" Multiplicity="1" />
+          <End Role="accounts" Type="Entity.account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="emails">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accounts">
+              <PropertyRef Name="EmailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSecurityQuestions">
+          <End Role="accounts" Type="Entity.account" Multiplicity="1" />
+          <End Role="accountsecurityquestions" Type="Entity.accountsecurityquestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accounts">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accountsecurityquestions">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountSecurityQuestions_SecurityQuestionID">
+          <End Role="securityquestions" Type="Entity.securityquestion" Multiplicity="1" />
+          <End Role="accountsecurityquestions" Type="Entity.accountsecurityquestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="securityquestions">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="accountsecurityquestions">
+              <PropertyRef Name="SecurityQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntityStoreContainer" CdmEntityContainer="MailableMeEntities">
+          <EntitySetMapping Name="accounts"><EntityTypeMapping TypeName="Entity.account"><MappingFragment StoreEntitySet="accounts">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="FullName" ColumnName="FullName" />
+            <ScalarProperty Name="EmailUser" ColumnName="EmailUser" />
+            <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="Gender" ColumnName="Gender" />
+            <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="accountsecurityquestions"><EntityTypeMapping TypeName="Entity.accountsecurityquestion"><MappingFragment StoreEntitySet="accountsecurityquestions">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+            <ScalarProperty Name="SecurityQuestionID" ColumnName="SecurityQuestionID" />
+            <ScalarProperty Name="Answer" ColumnName="Answer" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="blogs"><EntityTypeMapping TypeName="Entity.blog"><MappingFragment StoreEntitySet="blogs">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="BlogContent" ColumnName="BlogContent" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="emails"><EntityTypeMapping TypeName="Entity.email"><MappingFragment StoreEntitySet="emails">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="EmailPrefix" ColumnName="EmailPrefix" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="securityquestions"><EntityTypeMapping TypeName="Entity.securityquestion"><MappingFragment StoreEntitySet="securityquestions">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="SecurityQuestion1" ColumnName="SecurityQuestion" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="users"><EntityTypeMapping TypeName="Entity.user"><MappingFragment StoreEntitySet="users">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Password" ColumnName="Password" />
+            <ScalarProperty Name="PasswordExpiry" ColumnName="PasswordExpiry" />
+            <ScalarProperty Name="Active" ColumnName="Active" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MailableMe">
+        <EntityTypeShape EntityType="Entity.account" Width="1.5" PointX="3" PointY="1" Height="3.1340950520833331" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entity.accountsecurityquestion" Width="1.5" PointX="5.25" PointY="1.5" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entity.blog" Width="1.5" PointX="5.75" PointY="4.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entity.email" Width="1.5" PointX="0.75" PointY="1.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entity.securityquestion" Width="1.5" PointX="3" PointY="5.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Entity.user" Width="1.5" PointX="7.75" PointY="0.75" Height="1.9802864583333326" IsExpanded="true" />
+        <AssociationConnector Association="Entity.FK_accounts" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.547841796875" />
+          <ConnectorPoint PointX="3" PointY="2.547841796875" />
+        </AssociationConnector>
+        <AssociationConnector Association="Entity.FK_AccountSecurityQuestions" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.5862939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.5862939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="Entity.FK_AccountSecurityQuestions_SecurityQuestionID" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.7807828776041656" />
+          <ConnectorPoint PointX="5.46875" PointY="6.7807828776041656" />
+          <ConnectorPoint PointX="5.46875" PointY="3.6725878906249996" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
