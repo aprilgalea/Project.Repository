@@ -10,15 +10,15 @@ namespace MailableMe.Service.Common
 {
     public class RackSpaceHelper
     {
-        public static string Post(Core.RackSpaceClient client)
+        public static string Post(RackSpaceClient client)
         {
-            client.Method = Core.WebMethod.POST;
+            client.Method = WebMethod.POST;
             return ProcessRackSpace(client);
         }
 
-        public static string Get(Core.RackSpaceClient client)
+        public static string Get(RackSpaceClient client)
         {
-            client.Method = Core.WebMethod.GET;
+            client.Method = WebMethod.GET;
             return ProcessRackSpace(client);
         }
 
@@ -32,7 +32,7 @@ namespace MailableMe.Service.Common
             return ConfigurationManager.AppSettings["SecretKey"].ToString();
         }
 
-        private static string ProcessRackSpace(Core.RackSpaceClient client)
+        private static string ProcessRackSpace(RackSpaceClient client)
         {
             HttpWebResponse response = (HttpWebResponse)client.HttpRequest.GetResponse();
             Stream stream = response.GetResponseStream();

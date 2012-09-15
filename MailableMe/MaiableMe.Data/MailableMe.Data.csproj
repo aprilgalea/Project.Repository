@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B9999235-C600-4995-AB7E-F2E902568F04}</ProjectGuid>
+    <ProjectGuid>{57F40DFE-B322-4D6E-870E-0E5D542BC928}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MailableMe.Service</RootNamespace>
-    <AssemblyName>MailableMe.Service</AssemblyName>
+    <RootNamespace>MailableMe.Data</RootNamespace>
+    <AssemblyName>MailableMe.Data</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,11 +35,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,23 +49,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Helper.cs" />
-    <Compile Include="Common\RackSpaceHelper.cs" />
-    <Compile Include="Common\RackSpaceClient.cs" />
-    <Compile Include="Core\BaseRepository.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="Core\IRepository.cs" />
+    <Compile Include="Core\BaseObject.cs" />
+    <Compile Include="Context\DBInitializer.cs" />
+    <Compile Include="Entity\Account.cs" />
+    <Compile Include="Entity\AccountSecurityQuestion.cs" />
+    <Compile Include="Entity\Blog.cs" />
+    <Compile Include="Entity\Email.cs" />
+    <Compile Include="Entity\SecurityQuestion.cs" />
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="Context\MailableMeContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MaiableMe.Data\MailableMe.Data.csproj">
-      <Project>{57F40DFE-B322-4D6E-870E-0E5D542BC928}</Project>
-      <Name>MailableMe.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

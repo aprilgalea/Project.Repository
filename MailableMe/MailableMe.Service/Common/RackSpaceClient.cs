@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 
-namespace MailableMe.Service.Core
+namespace MailableMe.Service.Common
 {
     public enum WebMethod
     { 
