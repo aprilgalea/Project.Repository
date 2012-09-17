@@ -8,11 +8,11 @@ using System.Data.Entity;
 
 namespace MailableMe.Service.Core
 {
-    public abstract class BaseRepository<T,C> : IRepository<T>, IDisposable
+    public abstract class BaseRepository<T,C> : IRepository<T>
         where T:BaseObject
         where C: DbContext,new()
     {
-        private C _context;        
+        private C _context = new C();        
 
         public virtual IQueryable<T> GetAll()
         {
@@ -26,28 +26,31 @@ namespace MailableMe.Service.Core
             return query;
         }
 
-        public virtual void Add(T entity)
+        public virtual T Add(T entity)
         {
             _context.Set<T>().Add(entity);
+            return entity;
         }
 
-        public void Delete(T entity)
+        public virtual T Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
+            return entity;
         }
 
-        public void Edit(T entity)
+        public virtual T Edit(T entity)
         {
             _context.Entry(entity).State = System.Data.EntityState.Modified;
+            return entity;
         }
 
-        public void Save()
+        public virtual void Save()
         {
             _context.SaveChanges();
         }
 
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             this._context.Dispose();
         }

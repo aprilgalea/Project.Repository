@@ -7,13 +7,13 @@ using System.Linq.Expressions;
 
 namespace MailableMe.Service.Core
 {
-    public interface IRepository<T> where T:BaseObject
+    public interface IRepository<T>: IDisposable where T:BaseObject
     {
         IQueryable<T> GetAll();
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        void Add(T entity);
-        void Delete(T entity);
-        void Edit(T entity);
+        T Add(T entity);
+        T Delete(T entity);
+        T Edit(T entity);
         void Save();
     }
 }

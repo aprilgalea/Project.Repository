@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\GenericObject.cs" />
+    <Compile Include="Common\ZOHOHelper.cs" />
+    <Compile Include="Core\BaseClass.cs" />
+    <Compile Include="Core\IBaseClass.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\RackSpaceHelper.cs" />
     <Compile Include="Common\RackSpaceClient.cs" />

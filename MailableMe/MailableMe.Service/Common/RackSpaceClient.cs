@@ -40,13 +40,12 @@ namespace MailableMe.Service.Common
             this._request.UserAgent = UserAgent;
         }
 
-        public RackSpaceClient(string userkey, string secretkey, string url, string format, WebMethod method)
+        public RackSpaceClient(string userkey, string secretkey, string url, string format="text/xml")
         {
             this.UserKey = userkey;
             this.SecretKey = secretkey;
             this.URL = url;
-            this.Format = format;
-            this.Method = method;
+            this.Format = format;            
         }
     }
 }
