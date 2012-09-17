@@ -57,6 +57,10 @@
       <Project>{57F40DFE-B322-4D6E-870E-0E5D542BC928}</Project>
       <Name>MailableMe.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MailableMe.Service\MailableMe.Service.csproj">
+      <Project>{B9999235-C600-4995-AB7E-F2E902568F04}</Project>
+      <Name>MailableMe.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
