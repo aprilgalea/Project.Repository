@@ -47,15 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\GenericObject.cs" />
+    <Compile Include="BusinessObjects\ObjectService.cs" />
     <Compile Include="Common\ZOHOHelper.cs" />
-    <Compile Include="Core\BaseClass.cs" />
-    <Compile Include="Core\IBaseClass.cs" />
+    <Compile Include="Core\BaseFactory.cs" />
+    <Compile Include="Core\IFactory.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\RackSpaceHelper.cs" />
     <Compile Include="Common\RackSpaceClient.cs" />
     <Compile Include="Core\BaseRepository.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\ObjectRepository.cs" />
     <Compile Include="Core\IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

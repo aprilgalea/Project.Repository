@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace MailableMe.Service.Core
 {
-    public interface IObjects<T> where T:BaseObject
+    public interface IFactory<T> where T:BaseObject
     {
         IQueryable<T> GetObject(Expression<Func<T, bool>> predicate);
         IQueryable<T> GetObjects();

@@ -7,7 +7,7 @@ using MailableMe.Service.Core;
 
 namespace MailableMe.Service.Repository
 {
-    public class GenericRepository<T>: BaseRepository<T,MailableMe.Data.MailableMeContext> where T: BaseObject
+    public class ObjectRepository<T>: BaseRepository<T,MailableMe.Data.MailableMeContext> where T: BaseObject
     {
     }
 }
