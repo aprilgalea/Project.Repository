@@ -10,6 +10,7 @@ namespace MailableMe.Data.Entity
     public class Email:BaseObject
     {
         [Required]
-        public string EmailPrefix { get; set; }    
+        public string EmailPrefix { get; set; }
+        
     }
 }

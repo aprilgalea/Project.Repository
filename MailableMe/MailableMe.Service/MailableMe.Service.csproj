@@ -40,6 +40,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,7 +48,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\IObjectService.cs" />
+    <Compile Include="BusinessObjects\IServices\IAccountSecurityQuestionsService.cs" />
+    <Compile Include="BusinessObjects\IServices\IAccountsService.cs" />
+    <Compile Include="BusinessObjects\IServices\IBlogsService.cs" />
+    <Compile Include="BusinessObjects\IServices\IEmailsService.cs" />
+    <Compile Include="BusinessObjects\IServices\ISecurityQuestionsService.cs" />
+    <Compile Include="BusinessObjects\IServices\IUsersService.cs" />
+    <Compile Include="BusinessObjects\Services\EmailsService.cs" />
     <Compile Include="BusinessObjects\ObjectService.cs" />
+    <Compile Include="BusinessObjects\Services\AccountSecurityQuestionsService.cs" />
+    <Compile Include="BusinessObjects\Services\AccountsService.cs" />
+    <Compile Include="BusinessObjects\Services\BlogsService.cs" />
+    <Compile Include="BusinessObjects\Services\SecurityQuestionsService.cs" />
+    <Compile Include="BusinessObjects\Services\UsersService.cs" />
+    <Compile Include="Common\Security\EFIdentity.cs" />
+    <Compile Include="Common\Security\EFPrincipal.cs" />
+    <Compile Include="Common\Security\SecurityManager.cs" />
     <Compile Include="Common\ZOHOHelper.cs" />
     <Compile Include="Core\BaseFactory.cs" />
     <Compile Include="Core\IFactory.cs" />

@@ -20,7 +20,7 @@ namespace MailableMe.Service.Core
             return query;
         }
 
-        public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
+        public virtual IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         {
             IQueryable<T> query = _context.Set<T>().Where(predicate);
             return query;

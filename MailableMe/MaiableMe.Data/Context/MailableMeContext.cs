@@ -16,6 +16,7 @@ namespace MailableMe.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Email> Emails { get; set; }
         public DbSet<SecurityQuestion> SecurityQuestions  { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<T> GetDbSet<T>() where T:BaseObject
         {
@@ -29,6 +30,8 @@ namespace MailableMe.Data
                 return (DbSet<T>)(object)Emails;
             if (typeof(T) == typeof(SecurityQuestion))
                 return (DbSet<T>)(object)SecurityQuestions;
+            if (typeof(T) == typeof(User))
+                return (DbSet<T>)(object)Users;
             else
                 return null;
         }

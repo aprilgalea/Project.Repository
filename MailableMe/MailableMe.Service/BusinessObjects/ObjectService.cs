@@ -7,7 +7,7 @@ using MailableMe.Data;
 
 namespace MailableMe.Service.BusinessObjects
 {
-    public class ObjectService<T>: BaseFactory<T> where T: BaseObject
+    public class ObjectService<T>: BaseFactory<T>,IObjectService<T> where T: BaseObject
     {
     }
 }

@@ -34,6 +34,6 @@ namespace MailableMe.Data.Entity
 
         public string PersonalEmail { get; set; }
 
-        public virtual Email Email { get; set; }
+        public virtual Email Email { get; set; }        
     }
 }

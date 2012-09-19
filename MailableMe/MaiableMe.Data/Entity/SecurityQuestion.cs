@@ -11,5 +11,6 @@ namespace MailableMe.Data.Entity
     {
         [Required]
         public string Question { get; set; }
+        
     }
 }
