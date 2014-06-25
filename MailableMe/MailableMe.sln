@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailableMe.Data", "MaiableMe.Data\MailableMe.Data.csproj", "{57F40DFE-B322-4D6E-870E-0E5D542BC928}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailableMe.Service", "MailableMe.Service\MailableMe.Service.csproj", "{B9999235-C600-4995-AB7E-F2E902568F04}"
